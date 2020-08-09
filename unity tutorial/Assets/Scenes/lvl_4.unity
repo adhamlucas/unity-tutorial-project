@@ -334,7 +334,7 @@ PrefabInstance:
     - target: {fileID: 8008840663450208069, guid: e2a7098e4db5375eeabffe9c663f5c3b,
         type: 3}
       propertyPath: levelName
-      value: lvl_3
+      value: Credits
       objectReference: {fileID: 0}
     - target: {fileID: 8008840663450208184, guid: e2a7098e4db5375eeabffe9c663f5c3b,
         type: 3}
