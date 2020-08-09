@@ -39,17 +39,26 @@ public class Frog : MonoBehaviour
         }
     }
 
+    bool playerDestroyed = false;
     private void OnCollisionEnter2D(Collision2D collision) {
-        float height = collision.contacts[0].point.y -  headPoint.position.y;
 
-        if (height > 0) {
-            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 10, ForceMode2D.Impulse);
-            speed = 0;
-            animator.SetTrigger("Die");
-            boxCollider2D.enabled = false;
-            circleCollider2D.enabled = false;
-            rig.bodyType = RigidbodyType2D.Kinematic;
-            Destroy(gameObject, 0.3f);
-        }    
+        if( collision.gameObject.tag == "Player") {
+            float height = collision.contacts[0].point.y - headPoint.position.y;
+
+            if (height > 0 && !playerDestroyed) {
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+                speed = 0;
+                animator.SetTrigger("Die");
+                boxCollider2D.enabled = false;
+                circleCollider2D.enabled = false;
+                rig.bodyType = RigidbodyType2D.Kinematic;
+                
+                Destroy(gameObject, 0.3f);
+            } else {
+                playerDestroyed = true;
+                GameController.instance.ShowGameOver();
+                Destroy(collision.gameObject);
+            } 
+        }
     }
 }
