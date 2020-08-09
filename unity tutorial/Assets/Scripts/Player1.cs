@@ -63,10 +63,16 @@ public class Player1 : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.layer == 8) {
             isJumping = false;
-               anim.SetBool("jump", false);
+            doubleJump = false;
+            anim.SetBool("jump", false);
         }
         
         if(collision.gameObject.tag == "Spike") {
+            GameController.instance.ShowGameOver();
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.tag == "Saw") {
             GameController.instance.ShowGameOver();
             Destroy(gameObject);
         }
