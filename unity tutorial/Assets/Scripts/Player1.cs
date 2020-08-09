@@ -49,6 +49,7 @@ public class Player1 : MonoBehaviour
        if(Input.GetButtonDown("Jump")) {
            if (!isJumping) {
                rig.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
+               isJumping = true;
                doubleJump = true;
                anim.SetBool("jump", true);
            } else {
